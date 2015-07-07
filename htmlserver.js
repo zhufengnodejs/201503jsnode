@@ -8,6 +8,8 @@ http.createServer(function(req,res){
         fs.readFile("index.html","utf8",function(err,data){
             res.end(data);
         });
+    } else if(url == '/user'){
+        res.end('get a response');
     }else{
         res.setHeader('Content-Type',mime.lookup(url));
        fs.readFile(url.slice(1),function(err,data){
