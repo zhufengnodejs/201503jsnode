@@ -8,8 +8,13 @@ http.createServer(function(req,res){
         });
 
     }else if(url == '/listener.js'){
-       fs.readFile("listener.js","utf8",function(err,data){
-            res.end(data);
+       fs.readFile("listener1.js","utf8",function(err,data){
+           if(err){
+               res.end('not found');
+           }else{
+               res.end(data);
+           }
+
         });
     }
 
