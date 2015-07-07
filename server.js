@@ -5,8 +5,15 @@ var waiter = function(request,response){
     var url = request.url;
     var method = request.method;
     var host = request.headers['host'];
-    ponse.setHeader('Content-Type','text/html');
-    response.end(url+'<br>'+method+'<br>'+host);//结束说话
+    response.setHeader('Content-Type',
+        'text/html;charset=utf-8');
+    var menu = '<ul>';
+    menu+='<li>牛肉大葱包子</li>';
+    menu+='<li>鲜肉包子</li>';
+    menu+='<li>韭菜鸡蛋包子</li>';
+    menu+='<li>雪花啤酒</li>';
+    menu+='</ul>';
+    response.end(menu);//结束说话
 }
 
 //创建霍营包子店
