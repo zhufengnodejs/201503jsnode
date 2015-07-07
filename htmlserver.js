@@ -10,11 +10,10 @@ http.createServer(function(req,res){
         });
     } else if(url == '/addUser'){
         req.on('data',function(chunk){
-            console.log(chunk);
-            users.push(chunk);
+            users.push(change(chunk.toString()));
         });
         req.on('end',function(){
-            res.end(users);
+            res.end(JSON.stringify(users));
         })
     }else{
         res.setHeader('Content-Type',mime.lookup(url));
@@ -29,3 +28,11 @@ http.createServer(function(req,res){
     }
 
 }).listen(8080);
+
+function change(url) {
+    var reg = /([^?&=]+)=([^?&=]+)/g, obj = {};
+    url.replace(reg, function () {
+        obj[arguments[1]] = arguments[2];
+    });
+    return obj;
+}
