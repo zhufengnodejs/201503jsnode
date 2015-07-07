@@ -3,11 +3,14 @@ var fs = require('fs');
 http.createServer(function(req,res){
     var url = req.url;
     if(url == '/'){
-        var content=fs.readFileSync("index.html","utf8");
-        res.end(content);
+        fs.readFile("index.html","utf8",function(err,data){
+            res.end(data);
+        });
+
     }else if(url == '/listener.js'){
-        var content=fs.readFileSync("listener.js","utf8");
-        res.end(content);
+       fs.readFile("listener.js","utf8",function(err,data){
+            res.end(data);
+        });
     }
 
 }).listen(8080);
